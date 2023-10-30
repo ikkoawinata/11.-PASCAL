@@ -1,0 +1,59 @@
+unit convertgenerate;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Button1: TButton;
+    ListBox1: TListBox;
+    Label3: TLabel;
+    Panel1: TPanel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Button2: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.Button1Click(Sender: TObject);
+var
+  a, b, i: Integer;
+begin
+  a := StrToInt(Edit1.Text);
+  b := StrToInt(Edit2.Text);
+  ListBox1.Clear;
+  for i := a to b do
+  begin
+    ListBox1.Items.Add(IntToStr(i));
+  end;
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+Panel1.Visible:=True;
+end;
+
+end.
