@@ -1,0 +1,59 @@
+unit konversiHuruf;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls;
+
+type
+  TForm2 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Panel1: TPanel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.Button1Click(Sender: TObject);
+var angka : integer;
+var huruf : string;
+
+begin
+angka:=strtoint (edit1.Text);
+if angka >= 90 then huruf:='A'
+else if angka >=80 then huruf:='B'
+else if angka >=70 then huruf:='C'
+else if angka >=60 then huruf:='D'
+else huruf:= 'E';
+edit2.Text:=huruf;
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+Panel1.Visible:=True;
+end;
+
+
+end.
