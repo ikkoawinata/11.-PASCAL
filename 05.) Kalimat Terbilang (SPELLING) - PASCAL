@@ -1,0 +1,93 @@
+unit kalimatterbilang1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Button1: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Button2: TButton;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    panel: TPanel;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.Button1Click(Sender: TObject);
+var
+  vhasilbagi, vsisabagi: Integer;
+  vuang: String;
+const
+  Satuan: array [0..9] of String = (' ', ' SATU ', ' DUA ', ' TIGA ', ' EMPAT ', ' LIMA ', ' ENAM ', ' TUJUH ', ' DELAPAN ', ' SEMBILAN ');
+begin
+  vuang := '';
+
+  // MENGHITUNG RATUSAN
+  vsisabagi := StrToInt(Edit1.Text);
+  vhasilbagi := vsisabagi div 100;
+  vsisabagi := vsisabagi mod 100;
+
+  if vhasilbagi > 0 then
+  begin
+    if vhasilbagi = 1 then
+      vuang := vuang + ' SERATUS '
+    else
+      vuang := vuang + Satuan[vhasilbagi] + ' RATUS ';
+  end;
+
+  // MENGHITUNG PULUHAN
+  vhasilbagi := vsisabagi div 10;
+  vsisabagi := vsisabagi mod 10;
+
+  if vhasilbagi > 0 then
+  begin
+    if vhasilbagi = 1 then
+    begin
+      if vsisabagi = 0 then
+        vuang := vuang + ' SEPULUH '
+      else if vsisabagi = 1 then
+        vuang := vuang + ' SEBELAS '
+      else
+        vuang := vuang + Satuan[vsisabagi] + ' BELAS ';
+    end
+    else
+      vuang := vuang + Satuan[vhasilbagi] + ' PULUH ';
+  end;
+
+  // MENGHITUNG SATUAN
+  if vsisabagi > 0 then
+    vuang := vuang + Satuan[vsisabagi];
+
+  Edit2.Text := vuang;
+end;
+
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+panel.Visible:=True;
+end;
+
+end.
