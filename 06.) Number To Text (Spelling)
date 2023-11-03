@@ -1,0 +1,394 @@
+unit kalimatterbilang1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Button2: TButton;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    panel: TPanel;
+    Button1: TButton;
+    Button3: TButton;
+    Label6: TLabel;
+    Button4: TButton;
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.Button1Click(Sender: TObject);
+var vhasilbagi,vsisabagi : Integer;
+vuang : String;
+
+const
+  satuan: array[0..99] of string = (
+    '', 'SATU', 'DUA', 'TIGA', 'EMPAT', 'LIMA', 'ENAM', 'TUJUH', 'DELAPAN', 'SEMBILAN',
+    '', 'SEBELAS', 'DUA BELAS', 'TIGA BELAS', 'EMPAT BELAS', 'LIMA BELAS',
+    'ENAM BELAS', 'TUJUH BELAS', 'DELAPAN BELAS', 'SEMBILAN BELAS',
+    'DUA PULUH', 'DUA PULUH SATU', 'DUA PULUH DUA', 'DUA PULUH TIGA', 'DUA PULUH EMPAT', 'DUA PULUH LIMA', 'DUA PULUH ENAM', 'DUA PULUH TUJUH', 'DUA PULUH DELAPAN', 'DUA PULUH SEMBILAN',
+    'TIGA PULUH', 'TIGA PULUH SATU', 'TIGA PULUH DUA', 'TIGA PULUH TIGA', 'TIGA PULUH EMPAT', 'TIGA PULUH LIMA', 'TIGA PULUH ENAM', 'TIGA PULUH TUJUH', 'TIGA PULUH DELAPAN', 'TIGA PULUH SEMBILAN',
+    'EMPAT PULUH', 'EMPAT PULUH SATU', 'EMPAT PULUH DUA', 'EMPAT PULUH TIGA', 'EMPAT PULUH EMPAT', 'EMPAT PULUH LIMA', 'EMPAT PULUH ENAM', 'EMPAT PULUH TUJUH', 'EMPAT PULUH DELAPAN', 'EMPAT PULUH SEMBILAN',
+    'LIMA PULUH', 'LIMA PULUH SATU', 'LIMA PULUH DUA', 'LIMA PULUH TIGA', 'LIMA PULUH EMPAT', 'LIMA PULUH LIMA', 'LIMA PULUH ENAM', 'LIMA PULUH TUJUH', 'LIMA PULUH DELAPAN', 'LIMA PULUH SEMBILAN',
+    'ENAM PULUH', 'ENAM PULUH SATU', 'ENAM PULUH DUA', 'ENAM PULUH TIGA', 'ENAM PULUH EMPAT', 'ENAM PULUH LIMA', 'ENAM PULUH ENAM', 'ENAM PULUH TUJUH', 'ENAM PULUH DELAPAN', 'ENAM PULUH SEMBILAN',
+    'TUJUH PULUH', 'TUJUH PULUH SATU', 'TUJUH PULUH DUA', 'TUJUH PULUH TIGA', 'TUJUH PULUH EMPAT', 'TUJUH PULUH LIMA', 'TUJUH PULUH ENAM', 'TUJUH PULUH TUJUH', 'TUJUH PULUH DELAPAN', 'TUJUH PULUH SEMBILAN',
+    'DELAPAN PULUH', 'DELAPAN PULUH SATU', 'DELAPAN PULUH DUA', 'DELAPAN PULUH TIGA', 'DELAPAN PULUH EMPAT', 'DELAPAN PULUH LIMA', 'DELAPAN PULUH ENAM', 'DELAPAN PULUH TUJUH', 'DELAPAN PULUH DELAPAN', 'DELAPAN PULUH SEMBILAN',
+    'SEMBILAN PULUH', 'SEMBILAN PULUH SATU', 'SEMBILAN PULUH DUA', 'SEMBILAN PULUH TIGA', 'SEMBILAN PULUH EMPAT', 'SEMBILAN PULUH LIMA', 'SEMBILAN PULUH ENAM', 'SEMBILAN PULUH TUJUH', 'SEMBILAN PULUH DELAPAN', 'SEMBILAN PULUH SEMBILAN'
+  );
+
+
+begin
+vuang :='';
+
+
+//menghitung RATUS JUTAAN  JGN DIHAPUS
+vsisabagi := StrToInt(Edit1.Text);
+vsisabagi := vsisabagi mod 1000000000;
+vhasilbagi := vsisabagi div 100000000;
+if vhasilbagi > 0 then
+begin
+  if vhasilbagi = 1 then
+    vuang := vuang + 'SERATUS JUTA '
+  else
+    vuang := vuang + satuan[vhasilbagi] + ' RATUS ';
+end;
+
+
+
+ //menghitung PULUH JUTAAN  JGN DIHAPUS
+vsisabagi := StrToInt(Edit1.Text);
+vsisabagi := vsisabagi mod 100000000;
+vhasilbagi := vsisabagi div 10000000;
+if vhasilbagi > 0 then
+begin
+  if vhasilbagi = 1 then
+    vuang := vuang + 'SEPULUH JUTA '
+  else
+    vuang := vuang + satuan[vhasilbagi] + ' PULUH ';
+end;
+
+
+
+//menghitung JUTAAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 10000000;
+vhasilbagi:=vsisabagi div 1000000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' SATU JUTA '
+else vuang:=vuang+satuan[vhasilbagi]+' JUTA ';
+end;
+
+
+
+ //menghitung RATUSAN RIBUAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 1000000;
+vhasilbagi:=vsisabagi div 100000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' SERATUS RIBU '
+else vuang:=vuang+satuan[vhasilbagi]+' RATUS ';
+end;
+
+
+
+
+
+//menghitung PULUH RIBUAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 100000;
+vhasilbagi:=vsisabagi div 10000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' SEPULUH RIBU '
+else vuang:=vuang+satuan[vhasilbagi]+' PULUH ';
+end;
+
+
+//menghitung RIBUAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 10000;
+vhasilbagi:=vsisabagi div 1000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' SERIBU '
+else vuang:=vuang+satuan[vhasilbagi]+' RIBU ';
+end;
+
+
+
+
+//menghitung ratusan  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 1000;
+vhasilbagi:=vsisabagi div 100;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' SERATUS '
+else vuang:=vuang+satuan[vhasilbagi]+' RATUS ';
+end;
+
+
+
+
+
+//menghitung puluhan   JGN DIHAPUS
+vsisabagi :=vsisabagi mod 100;
+vhasilbagi:=vsisabagi div 10;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then
+begin
+vsisabagi :=vsisabagi mod 10;
+if vsisabagi=0 then vuang:=vuang+' SEPULUH '
+else if vsisabagi=1 then vuang:=vuang+' SEBELAS '
+else vuang:=vuang+satuan[vsisabagi]+' BELAS ';
+vsisabagi:=0; //supaya satuannya tidak dicek
+end
+else vuang:=vuang+satuan[vhasilbagi]+' PULUH ';
+end;
+
+
+//menghitung satuan    JGN DIHAPUS
+vsisabagi :=vsisabagi mod 10;
+vhasilbagi:=vsisabagi div 1;
+if vhasilbagi > 0 then vuang:=vuang+satuan[vhasilbagi];
+
+
+  edit2.Text:=vuang;
+
+
+end;
+
+
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+  panel.Visible := True;
+end;
+
+
+procedure TForm2.Button3Click(Sender: TObject);
+var vhasilbagi,vsisabagi : Integer;
+vuang : String;
+
+const satuan : array[0..19] of string = (' ' ,' ONE ',' TWO ',' THREE ',' FOUR ',' FIVE ',' SIX ',' SEVEN ',' EIGHT ',' NINE ', ' TEN ',' ELEVEN ', ' TWELVE ', ' THIRTEEN ', ' FOURTEEN ', ' FIFTEEN ',' SIXTEEN', ' SEVENTEEN ', ' EIGHTEEN ', ' NINETEEN ');
+
+begin
+vuang :='';
+
+
+
+
+
+
+
+
+//menghitung RATUS JUTAAN  JGN DIHAPUS
+vsisabagi := StrToInt(Edit1.Text);
+vsisabagi := vsisabagi mod 1000000000;
+vhasilbagi := vsisabagi div 100000000;
+if vhasilbagi > 0 then
+begin
+  if vhasilbagi = 1 then
+    vuang := vuang + 'ONE HUNDRED MILLION '
+  else
+    vuang := vuang + satuan[vhasilbagi] + ' HUNDRED ';
+end;
+
+
+
+
+
+
+//menghitung PULUH JUTA  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi := vsisabagi mod 100000000;
+vhasilbagi := vsisabagi div 10000000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' TEN MILLION ' ;
+//else vuang:=vuang+satuan[vhasilbagi]+ '  AND ';
+BEGIN
+     case vhasilbagi of
+      2: vuang := vuang + ' TWENTY AND ';
+      3: vuang := vuang + ' THIRTY AND ';
+      4: vuang := vuang + ' FORTY AND ';
+      5: vuang := vuang + ' FIFTY AND ';
+      6: vuang := vuang + ' SIXTY AND ';
+      7: vuang := vuang + ' SEVENTY AND';
+      8: vuang := vuang + ' EIGHTY AND ';
+      9: vuang := vuang + ' NINETY AND ';
+    end;
+END;
+end;
+
+
+
+   //menghitung JUTAAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 10000000;
+vhasilbagi:=vsisabagi div 1000000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' ONE MILLION  '
+else vuang:=vuang+satuan[vhasilbagi]+' MILLION ';
+end;
+
+
+
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 1000000;
+vhasilbagi:=vsisabagi div 100000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' ONE HUNDRED THOUSAND AND '
+else vuang:=vuang+satuan[vhasilbagi]+' HUNDRED ';
+end;
+
+
+
+
+
+
+//menghitung PULUH RIBUAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 100000;
+vhasilbagi:=vsisabagi div 10000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' TEN THOUSAND ' ;
+//else vuang:=vuang+satuan[vhasilbagi]+ '  AND ';
+BEGIN
+     case vhasilbagi of
+      2: vuang := vuang + ' TWENTY AND ';
+      3: vuang := vuang + ' THIRTY AND ';
+      4: vuang := vuang + ' FORTY AND ';
+      5: vuang := vuang + ' FIFTY AND ';
+      6: vuang := vuang + ' SIXTY AND ';
+      7: vuang := vuang + ' SEVENTY AND';
+      8: vuang := vuang + ' EIGHTY AND ';
+      9: vuang := vuang + ' NINETY AND ';
+    end;
+END;
+end;
+
+
+
+
+
+
+
+
+//menghitung RIBUAN  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 10000;
+vhasilbagi:=vsisabagi div 1000;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' ONE THOUSAND '
+else vuang:=vuang+satuan[vhasilbagi]+' THOUSAND ';
+end;
+
+
+
+
+
+
+
+    //menghitung ratusan  JGN DIHAPUS
+vsisabagi :=strtoint(edit1.Text);
+vsisabagi :=vsisabagi mod 1000;
+vhasilbagi:=vsisabagi div 100;
+if vhasilbagi>0 then
+begin
+if vhasilbagi=1 then vuang:=vuang+' ONE HUNDRED '
+else vuang:=vuang+satuan[vhasilbagi]+ ' HUNDRED ' ;
+end;
+
+
+////menghitung ratusan  JGN DIHAPUS
+//vsisabagi :=strtoint(edit1.Text);
+//vhasilbagi:=vsisabagi div 100;
+//if vhasilbagi>0 then
+//begin
+//if vhasilbagi=1 then vuang:=vuang+' ONE HUNDRED '
+//else vuang:=vuang+satuan[vhasilbagi]+' HUNDRED ';
+//end;
+
+
+
+
+// Menghitung puluhan  JGN DIHAPUS
+vsisabagi := vsisabagi mod 100;
+vhasilbagi := vsisabagi div 10;
+if vhasilbagi > 0 then
+begin
+  if vhasilbagi = 1 then
+  begin
+    vsisabagi := vsisabagi mod 10;
+    case vsisabagi of
+      0: vuang := vuang + ' TEN ';
+      1: vuang := vuang + ' ELEVEN ';
+      2: vuang := vuang + ' TWELVE ';
+      3: vuang := vuang + ' THIRTEEN ';
+      4: vuang := vuang + ' FOURTEEN ';
+      5: vuang := vuang + ' FIFTEEN ';
+      6: vuang := vuang + ' SIXTEEN ';
+      7: vuang := vuang + ' SEVENTEEN ';
+      8: vuang := vuang + ' EIGHTEEN ';
+      9: vuang := vuang + ' NINETEEN ';
+    end;
+    vsisabagi := 0; // Supaya satuannya tidak dicek
+  end
+  else
+  begin
+    case vhasilbagi of
+      2: vuang := vuang + ' TWENTY AND ';
+      3: vuang := vuang + ' THIRTY AND ';
+      4: vuang := vuang + ' FORTY AND ';
+      5: vuang := vuang + ' FIFTY AND ';
+      6: vuang := vuang + ' SIXTY AND ';
+      7: vuang := vuang + ' SEVENTY AND';
+      8: vuang := vuang + ' EIGHTY AND ';
+      9: vuang := vuang + ' NINETY AND ';
+    end;
+  end;
+end;
+
+
+//menghitung satuan  JGN DIHAPUS
+vsisabagi :=vsisabagi mod 10;
+vhasilbagi:=vsisabagi div 1;
+if vhasilbagi > 0 then vuang:=vuang+satuan[vhasilbagi];
+
+
+  edit2.Text:=vuang;
+
+end;
+
+end.
