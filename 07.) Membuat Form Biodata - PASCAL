@@ -1,0 +1,104 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
+  Vcl.Buttons, Vcl.ExtDlgs, jpeg;
+
+type
+  TForm2 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    MaskEdit1: TMaskEdit;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    RadioGroup1: TRadioGroup;
+    Label8: TLabel;
+    ComboBox1: TComboBox;
+    Memo1: TMemo;
+    Label7: TLabel;
+    RadioButton3: TRadioButton;
+    RadioButton4: TRadioButton;
+    Label9: TLabel;
+    Image1: TImage;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    OpenPictureDialog1: TOpenPictureDialog;
+    BitBtn3: TBitBtn;
+    Edit3: TEdit;
+    procedure RadioButton3Click(Sender: TObject);
+    procedure RadioButton4Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TForm2.BitBtn1Click(Sender: TObject);
+   var strdata,vstatus,vkelamin, vkerja : string;
+begin
+if RadioButton1.Checked then vstatus:='Menikah'
+else vstatus:='Belum Menikah';
+if RadioGroup1.ItemIndex =0 then vkelamin:='Pria'
+else vkelamin:='Wanita';
+
+if RadioButton3.Checked then vkerja:='Bekerja'
+else vkerja:='Tidak Bekerja';
+
+strdata:=
+          'Nama                          : ' +Edit1.Text+chr(13)+
+          'Tempat Lahir                : ' +Edit2.Text+chr(13)+
+          'Tanggal Lahir               : ' +MaskEdit1.Text+chr(13)+
+          'Status Pernikahan        : ' +vstatus+chr(13)+
+          'Jenis Kelamin               : ' +vkelamin+chr(13)+
+          'Pendidikan                   : ' +ComboBox1.Text+chr(13)+
+          'Keterangan Pendidikan : ' +Memo1.Text+chr(13)+
+          'Status Pekerjaan           : ' +vkerja+chr(13)+
+          'Keterangan Pekerjaan   : ' +Edit3.Text+chr(13)+
+          'Photo                           : ' +OpenPictureDialog1.FileName;
+
+               showmessage(strdata);
+
+end;
+
+procedure TForm2.BitBtn3Click(Sender: TObject);
+begin
+if OpenPictureDialog1.Execute then
+begin
+          Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+end;
+
+end;
+
+
+procedure TForm2.RadioButton3Click(Sender: TObject);
+begin
+Edit3.Visible:=true;
+Label9.Visible:=true;
+end;
+
+procedure TForm2.RadioButton4Click(Sender: TObject);
+begin
+Edit3.Visible:=false;
+Label9.Visible:=true;
+end;
+
+end.
